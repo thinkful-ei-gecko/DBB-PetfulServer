@@ -1,0 +1,29 @@
+{
+  "name": "petful.server",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "engines": {
+    "node": "12.8.0"
+  },
+  "author": "Alex Cumbo",
+  "license": "UNLICENSED",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/server.js",
+    "deploy": "git push heroku master"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "faker": "^4.1.0",
+    "helmet": "^3.21.2",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.19.4",
+    "uuid": "^3.3.3"
+  }
+}

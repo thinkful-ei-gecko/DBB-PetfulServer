@@ -2,34 +2,35 @@ Link to live app: https://dbb-petful-app.now.sh/
 
 Link to client repo: https://github.com/thinkful-ei-gecko/DBB-PetfulClient
 
-#Petful API
+# Petful API
 
 Welcome to the Petful API! This project was completed by Daniel Nichols, Brock Boutwell, and Badri Tulsiram as part of Thinkful's Engineering Immersion Program. 
 ##What is Petful? 
 
 The Petful API is the backend for a pet adoption application that works based on a first-in, first-out approach.  Pets are allowed to be adopted in the order they arrive at the shelter, and potential adopters are served in the order they sign up for adoption. In this way, Petful makes a difficult decision easy for all pet lovers. How convenient!
 
-##How does it work? 
+## How does it work? 
 
 The Petful API makes use of a queue data structure to track pets and potential adopters. As pets and users are entered into the program, they are added to the end of the queue. When a customer chooses to adopt, their information is sent to the API, which then checks to see that it matches with the values at the front of the queue. If there is a match, the pet and the user are removed from the queue, and (of course) go on to have a happy life together. 
 
-##Technologies Used
+## Technologies Used
 
 This API was built using NodeJS and Express Router.
 
-##Using the API
+## Using the API
 
 The API makes use of four endpoints: 
 
 1. /api/users - Used for adding a user to the queue. 
 
 2. /api/cats - The cats endpoint contains two methods, get and delete
-GET: Returns an object with all cats currently in the cat queue:
+GET: Returns an array with all cats currently in the cat queue:
 
 Example Response: 
 <pre><code>
-{
-    "value": {
+[
+    {
+        "id": 1,
         "imageURL": "https://www.thesprucepets.com/thmb/EYwC2xOwRMzj72UKfRINhoOjXME=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1152927326-91a042e750cf42abbbded1dc97b2dc6d.jpg",
         "imageDescription": "A fluffy himilayan cat.",
         "name": "Snowball",
@@ -38,30 +39,27 @@ Example Response:
         "breed": "Himilayan",
         "story": "Suffers PTSD from life as a therapy cat."
     },
-    "next": {
-        "value": {
-            "imageURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhRgyVTSYQv38uwUOSKj_fTAFGUwivw7aQEzsnvKZZVHCJVINP&s",
-            "imageDescription": "A tabby cat next to a river",
-            "name": "Matt Furry",
-            "sex": "Male",
-            "age": 4,
-            "breed": "Tabby",
-            "story": "Found living in a van, down by the river. This cat is prone to outbursts, but has a heart of gold."
-        },
-        "next": {
-            "value": {
-                "imageURL": "https://i.pinimg.com/originals/ae/b5/2f/aeb52fbd2c990b1a8d606ef51bfafce1.jpg",
-                "imageDescription": "A black cat wondering around the streets", 
-                "name": "Selena",
-                "sex": "Female",
-                "age": 3,
-                "breed": "Other/Black",
-                "story": "Selena was found wondering around the streets of Gotham. Little is known about her life before the shelter, but she is known to have a love/hate relationship with bats."
-            },
-            "next": null
-        }
+    {
+        "id": 2,
+        "imageURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhRgyVTSYQv38uwUOSKj_fTAFGUwivw7aQEzsnvKZZVHCJVINP&s",
+        "imageDescription": "A tabby cat next to a river",
+        "name": "Matt Furry",
+        "sex": "Male",
+        "age": 4,
+        "breed": "Tabby",
+        "story": "Found living in a van, down by the river. This cat is prone to outbursts, but has a heart of gold."
+    },
+    {
+        "id": 3,
+        "imageURL": "https://i.pinimg.com/originals/ae/b5/2f/aeb52fbd2c990b1a8d606ef51bfafce1.jpg",
+        "imageDescription": "A black cat wondering around the streets",
+        "name": "Selena",
+        "sex": "Female",
+        "age": 3,
+        "breed": "Other/Black",
+        "story": "Selena was found wondering around the streets of Gotham. Little is known about her life before the shelter, but she is known to have a love/hate relationship with bats."
     }
-}
+]
 </pre></code>
 
 DELETE: Used for pet adoption. Checks the request against the first items in the user queue. If successful, dequeues the first cat and first user in the queue, and responds with 204. Otherwise, responds with 401 and 'You must wait your turn!'
@@ -72,8 +70,9 @@ GET: Responds with an object containing a list of all dogs currently in the dog 
 
 Example response: 
 <pre><code>
-{
-    "value": {
+[
+    {
+        "id": 1,
         "imageURL": "http://www.dogster.com/wp-content/uploads/2015/05/Cute%20dog%20listening%20to%20music%201_1.jpg",
         "imageDescription": "A large Rottweiler in a field",
         "name": "Max",
@@ -82,27 +81,26 @@ Example response:
         "breed": "Rottweiler",
         "story": "Was previously owned by a wealthy German count. Don't let his 130lb frame fool you; he is undoubtedly the worst guard dog imaginable."
     },
-    "next": {
-        "value": {
-            "imageURL": "http://www.dogster.com/wp-content/uploads/2015/05/Cute%20dog%20listening%20to%20music%201_1.jpg",
-            "imageDescription": "A smiling golden-brown golden retreiver listening to music.",
-            "name": "Shadow",
-            "sex": "Male",
-            "age": 3,
-            "breed": "Golden Retriever",
-            "story": "Was owned by a suburban family, but got separated. Took an incredible journey with another dog and a cat."
-        },
-        "next": null,
+    {
+        "id": 2,
+        "imageURL": "http://www.dogster.com/wp-content/uploads/2015/05/Cute%20dog%20listening%20to%20music%201_1.jpg",
+        "imageDescription": "A smiling golden-brown golden retreiver listening to music.",
+        "name": "Shadow",
+        "sex": "Male",
+        "age": 3,
+        "breed": "Golden Retriever",
+        "story": "Was owned by a suburban family, but got separated. Took an incredible journey with another dog and a cat."
     }
-} </pre></code>
+]
+ </pre></code>
 
 DELETE: Used for pet adoption. Checks the request against the first items in the user queue. If successful, dequeues the first dog and first user in the queue, and responds with 204. Otherwise, responds with 401 and 'You must wait your turn!'
  
 4. /api/queue- The queue endpoint will return an array with a list of all the users currently contained within the queue, in order. 
 <pre><code>[
-Daniel, 
-Brock, 
-Badri, 
+{id: 1, name: Daniel}, 
+{id: 2, name: Brock}, 
+{id: 3, name: Badri}, 
 Kelley
 ]</pre></code>
 
